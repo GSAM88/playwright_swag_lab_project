@@ -1,0 +1,17 @@
+{
+  "name": "playwright_swag_lab_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:e2e:smoke": "npx playwright test tests/ --grep @smoke",
+    "test:e2e:functional": "npx playwright test tests/ --grep @functional"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.18"
+  }
+}
