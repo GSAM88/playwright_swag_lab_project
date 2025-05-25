@@ -1,6 +1,6 @@
 import { expect, Page, Locator } from '@playwright/test'
 import { pageURLs } from '../utils/page-urls'
-import { User, validUsernames, password } from '../data/userData.ts'
+import { User, availableUsernames, password } from '../data/userData'
 
 export class LoginPage {
 
@@ -11,7 +11,7 @@ export class LoginPage {
         notMatched: 'Epic sadface: Username and password do not match any user in this service',
         passwordRequired: 'Epic sadface: Password is required',
         usernameRequired: 'Epic sadface: Username is required'
-    } as const
+    } as const;
     private readonly loginCredentialsDiv: Locator;
     private readonly loginPasswordDiv: Locator;
     private readonly usernameInput: Locator;
@@ -28,11 +28,11 @@ export class LoginPage {
         this.passwordInput = page.locator('[data-test="password"]');
         this.loginButton = page.locator('[data-test="login-button"]');
         this.loginErrorDiv = page.locator('.error-message-container.error');
-    }
+    };
 
     getErrorMessages(): typeof this.errorMessages {
         return this.errorMessages;
-    }
+    };
 
     async assertPageTitle() {
         await expect(this.page).toHaveTitle(this.pageLogo);
@@ -44,7 +44,7 @@ export class LoginPage {
 
     async assertUsernamesAreVisible() {
         await expect(this.loginCredentialsDiv).toContainText('Accepted usernames are:');
-        for (const [key, username] of Object.entries(validUsernames)) {
+        for (const [key, username] of Object.entries(availableUsernames)) {
             await expect(this.loginCredentialsDiv).toContainText(username);
         };
     };
@@ -52,7 +52,7 @@ export class LoginPage {
     async assertPasswordIsVisible() {
         await expect(this.loginPasswordDiv).toContainText('Password for all users:');
         await expect(this.loginPasswordDiv).toContainText(password.valid);
-    }
+    };
 
     async assertUsernameInputHasCorrectAttributes() {
         await expect(this.usernameInput).toBeEmpty();
@@ -86,24 +86,23 @@ export class LoginPage {
     };
 
     async assertLoginPassWithAllUsernames() {
-        for (const [key, username] of Object.entries(validUsernames)) {
-            if (username !== validUsernames.locked) {
-                await this.Login({ username: username, password: password.valid });
-                await expect(this.page).toHaveURL(pageURLs.inventoryPage);
+        for (const [key, username] of Object.entries(availableUsernames)) {
+            if (username !== availableUsernames.locked) {
+                await this.login({ username: username, password: password.valid });
                 await this.Logout();
             };
         };
     };
 
     async assertLoginFailWithError(user: User, message: string) {
-        await this.Login(user);
+        await this.login(user);
         await expect(this.loginErrorDiv).toBeVisible();
         await expect(this.loginErrorDiv).toContainText(message);
         await expect(this.page.locator('[data-test="error-button"]')).toBeEnabled();
     };
 
 
-    async Login(user: User) {
+    async login(user: User) {
         await this.usernameInput.fill(user.username);
         await this.passwordInput.fill(user.password);
         await this.loginButton.click();

@@ -57,27 +57,27 @@ test.describe('@functional Login Form Functional tests', async ()=>{
     });
 
     test('should display an error for locked user login', async ()=>{
-        await loginPage.assertLoginFailWithError(users.locked,loginPage.getErrorMessages().locked);
+        await loginPage.assertLoginFailWithError(users.lockedUser,loginPage.getErrorMessages().locked);
     });
 
     test('should display an error for invalid username', async ()=>{
-        await loginPage.assertLoginFailWithError(users.unregistered, loginPage.getErrorMessages().notMatched);
+        await loginPage.assertLoginFailWithError(users.unregisteredUser, loginPage.getErrorMessages().notMatched);
     });
 
     test('should display an error for invalid password', async ()=>{
-        await loginPage.assertLoginFailWithError(users.invalidPassword, loginPage.getErrorMessages().notMatched);
+        await loginPage.assertLoginFailWithError(users.invalidPasswordUser, loginPage.getErrorMessages().notMatched);
     });
 
     test('should display an error for empty Username', async ()=>{
-        await loginPage.assertLoginFailWithError(users.emptyUsername, loginPage.getErrorMessages().usernameRequired);
+        await loginPage.assertLoginFailWithError(users.emptyUsernameUser, loginPage.getErrorMessages().usernameRequired);
     });
 
     test('should display an error for empty Password', async ()=>{
-        await loginPage.assertLoginFailWithError(users.emptyPassword, loginPage.getErrorMessages().passwordRequired);
+        await loginPage.assertLoginFailWithError(users.emptyPasswordUser, loginPage.getErrorMessages().passwordRequired);
     });
 
     test('should display an error when username and password are in uppercase', async ()=>{
-        await loginPage.assertLoginFailWithError(users.upperCase, loginPage.getErrorMessages().notMatched);
+        await loginPage.assertLoginFailWithError(users.upperCaseStandardUser, loginPage.getErrorMessages().notMatched);
     });
 
-})
+});
