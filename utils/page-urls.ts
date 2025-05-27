@@ -1,4 +1,5 @@
 export enum pageURLs {
     loginPage = '/',
-    inventoryPage = '/inventory.html'
+    inventoryPage = '/inventory.html',
+    checkoutCompletePage = '/checkout-complete.html'
 };

@@ -1,5 +1,4 @@
 import { expect, Page, Locator } from '@playwright/test'
-import { pageURLs } from '../utils/page-urls'
 import { User, availableUsernames, password } from '../data/userData'
 
 export class LoginPage {

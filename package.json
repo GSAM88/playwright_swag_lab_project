@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:e2e:smoke": "npx playwright test tests/ --grep @smoke",
-    "test:e2e:functional": "npx playwright test tests/ --grep @functional"
+    "test:smoke": "npx playwright test tests/ --grep @smoke",
+    "test:functional": "npx playwright test tests/ --grep @functional",
+    "test:e2e": "npx playwright test tests/ --grep @e2e"
   },
   "keywords": [],
   "author": "",

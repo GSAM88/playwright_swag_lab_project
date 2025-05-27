@@ -1,6 +1,9 @@
 export type User = {
     username: string;
     password: string;
+    firstName?: string;
+    lastName?: string;
+    postalCode?: string;
 };
 
 export const availableUsernames = {
@@ -19,7 +22,7 @@ export const password = {
 } as const;
 
 export const users = {
-    standardUser: { username: availableUsernames.standard, password: password.valid },
+    standardUser: { username: availableUsernames.standard, password: password.valid, firstName: 'George', lastName: 'Papadopoulos', postalCode: '16452' },
     lockedUser: { username: availableUsernames.locked, password: password.valid },
     problemUser: { username: availableUsernames.problem, password: password.valid },
     performanceGlitchUser: { username: availableUsernames.performanceGlitch, password: password.valid },
