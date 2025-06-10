@@ -7,16 +7,16 @@ export type User = {
 };
 
 export const availableUsernames = {
-    standard: 'standard_user',
+    standard: <string>process.env.STANDARD_USERNAME,
     locked: 'locked_out_user',
-    problem: 'problem_user',
-    performanceGlitch: 'performance_glitch_user',
+    problem: <string>process.env.PROBLEM_USERNAME,
+    performanceGlitch: <string>process.env.PERFORMANCE_GLITCH_USERNAME,
     error: 'error_user',
-    visual: 'visual_user'
+    visual: <string>process.env.VISUAL_USERNAME
 } as const;
 
 export const password = {
-    valid: 'secret_sauce',
+    valid: <string>process.env.PASSWORD,
     invalid: 'wrong_pass',
     empty: ''
 } as const;
