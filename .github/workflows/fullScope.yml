@@ -9,6 +9,12 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      STANDARD_USERNAME: ${{ secrets.STANDARD_USERNAME }}
+      VISUAL_USERNAME: ${{ secrets.VISUAL_USERNAME }}
+      PROBLEM_USERNAME: ${{ secrets.PROBLEM_USERNAME }}
+      PERFORMANCE_GLITCH_USERNAME: ${{ secrets.PERFORMANCE_GLITCH_USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
     container:
       image: mcr.microsoft.com/playwright:v1.52.0-noble
       options: --user 1001
